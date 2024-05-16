@@ -1,7 +1,7 @@
-# intuji-assignment
-## Assessment by intuji
+# Evento - Intuji Assessment
+![alt text](https://github.com/hariupreti1995/intuji-assignment/blob/main/src/images/logo.png?raw=true)
+## Assessment description
 An event management system that allows visitors to create and change event information, resulting in an event on Google Calendar.
-
 
 ## Git flow
 The main branch will be updated to test the assessment.

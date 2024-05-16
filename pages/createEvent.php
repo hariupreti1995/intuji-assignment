@@ -1,40 +1,37 @@
+<?php
+$inputTextStyle = "bg-slate-200 p-2 focus:border-none outline-none rounded-md w-full mt-1.5";
+$labelStyle = "text-gray-600 text-sm";
+?>
 <div class="flex-1 p-6">
-    <div class="text-sm px-2 py-6 text-gray-500">Upcomming Events</div>
-    <div class="grid grid-cols-2 gap-6 mb-6">
-        <!-- Card -->
+    <div class="grid gap-6 mb-6">
         <div class="bg-white rounded-lg shadow p-4">
-            <h3 class="text-lg font-semibold">Name of events</h3>
-            <p class="text-gray-600">Events Location</p>
-            <p class="text-gray-400 text-sm">Description of events</p>
-            <div class="flex justify-between items-center mt-4">
-                <span class="text-gray-400 text-sm">25 March 2024</span>
-                <button class="bg-red-500 text-white py-1 px-3 rounded">View</button>
-            </div>
+            <h3 class="text-lg font-semibold pb-4">Create new event</h3>
+            <form method="post" action="event/newevent.php">
+                <div class="grid grid-flow-cols grid-cols-2">
+                    <div class="mx-4">
+                        <div><label class="<?php echo $labelStyle; ?>">Event Name</label></div>
+                        <input type="text" name="name" placeholder="Name of event"
+                            class="<?php echo $inputTextStyle; ?>" />
+                    </div>
+                    <div class="mx-4">
+                        <div><label class="<?php echo $labelStyle; ?>">Short Description</label></div>
+                        <textarea name="description" placeholder="Short description"
+                            class="<?php echo $inputTextStyle; ?>"></textarea>
+                    </div>
+                    <div class="mx-4 my-8">
+                        <div><label class="<?php echo $labelStyle; ?>">Event Location</label></div>
+                        <input type="text" name="location" class="<?php echo $inputTextStyle; ?>" />
+                    </div>
+                    <div class="mx-4 my-8">
+                        <div><label class="<?php echo $labelStyle; ?>">Date</label></div>
+                        <input type="datetime-local" name="datetime" class="<?php echo $inputTextStyle; ?>"
+                            value="<?php echo date("Y-m-d"); ?>">
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button type="submit" class="bg-green-500 text-white py-1 px-3 rounded">Create</button>
+                </div>
+            </form>
         </div>
-        <div class="bg-white rounded-lg shadow p-4">
-            <h3 class="text-lg font-semibold">Name of events</h3>
-            <p class="text-gray-600">Events Location</p>
-            <p class="text-gray-400 text-sm">Description of events</p>
-            <div class="flex justify-between items-center mt-4">
-                <span class="text-gray-400 text-sm">25 March 2024</span>
-                <button class="bg-red-500 text-white py-1 px-3 rounded">View</button>
-            </div>
-        </div>
-    </div>
-    <div class="text-sm px-2 py-6 text-gray-500">Calendar View</div>
-    <div class="bg-white rounded-lg shadow p-6">
-        <div class="grid grid-cols-2">
-            <div>
-                <h3 class="text-lg font-semibold mb-4">Monthly</h3>
-            </div>
-            <div class="grid place-content-end -mt-4 p-4">
-                <select class="bg-slate-50 p-2">
-                    <option>All Events</option>
-                    <option>Upcomming Events</option>
-                    <option>Past Events</option>
-                </select>
-            </div>
-        </div>
-        <div class="h-64 bg-gray-100 rounded"></div>
     </div>
 </div>
