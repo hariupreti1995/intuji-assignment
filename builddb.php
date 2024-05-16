@@ -1,6 +1,5 @@
 <?php
 include ("connection/mysqlconnection.php");
-$dbName = "eventer";
 $dropdb = "DROP DATABASE $dbName";
 $sql = "CREATE DATABASE $dbName";
 if ($conn->query($dropdb) === TRUE && $conn->query($sql) === TRUE) {
