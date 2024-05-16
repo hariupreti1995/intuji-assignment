@@ -13,4 +13,7 @@ To set up this project on your local machine, you must first clone the main bran
 You will locate the .env.example file in the root directory; please create a file named .env from it and edit the information based on your configuration.
 
 ## Database and table migration
-Once you obtained the updated code from the repository, you'll notice a builddb.php file in the root directory which is the script for creating the database and table, so all you have to do is run the following command to create the database and table. Please be aware that this process will drop and establish a new database named eventer; if you currently have a database with the same name, please change it from the .env file.
+Once you obtained the updated code from the repository, you'll notice a builddb.php file in the root directory which is the script for creating the database and table, so all you have to do is run the following command to create the database and table. Please be aware that this process will drop and establish a new database named eventer, if you currently have a database with the same name, please change it from the .env file and hit the below command in the root directory.
+```php
+    php builddb.php
+```
