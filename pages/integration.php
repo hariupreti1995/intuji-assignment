@@ -22,7 +22,8 @@ $modalContent = '<div class="relative z-10" aria-labelledby="modal-title" role="
         </div>
       </div>
     </div>
-    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+    <div class="bg-gray-50 px-4 py-3 sm:flex justify-between sm:px-6">
+      <a href="?page=integration" class="inline-flex w-full justify-center rounded-md bg-slate-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-600 sm:ml-3 sm:w-auto">Close</a>
       <button type="submit" class="inline-flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto">Connect Now</button>
     </div>
   </div>
@@ -32,47 +33,48 @@ $modalContent = '<div class="relative z-10" aria-labelledby="modal-title" role="
 </div>';
 
 if (isset($_GET["disconnect"]) && $_GET["disconnect"] == true) {
-    $delQuery = "DELETE FROM integrations WHERE id > 0";
-    $conn->query($delQuery);
+  $delQuery = "DELETE FROM integrations WHERE id > 0";
+  $conn->query($delQuery);
 }
 $data = [];
 $getIntegrationStatus = "SELECT * FROM integrations WHERE status = 'connected' AND service = 'google-calendar-api' and token != '' ORDER BY id DESC LIMIT 1";
 if ($result = $conn->query($getIntegrationStatus)) {
-    $data = $result->fetch_assoc();
+  $data = $result->fetch_assoc();
 }
 if ($showModal) {
-    $modal = new modal($modalContent);
-    $modal->showModal();
+  $modal = new modal($modalContent);
+  $modal->showModal();
 }
 ?>
 <div class="flex-1 p-6">
-    <div class="grid grid-cols-4 gap-6 mb-6">
-        <div class="bg-white rounded-lg shadow p-4">
-            <h3 class="text-lg font-semibold text-start mb-4">Google Calendar</h3>
-            <div class="grid grid-flow-col grid-cols-3">
-                <div>
-                    <img src="https://lh3.googleusercontent.com/PVe1qU58ryjSA4nEllsvJIA1g9qJSu1h8vfHvgOsBhfsNV-gFkCiBl8B6Aqpux9iYoqRdoTLxwvVBVDE1SE=w80-h80"
-                        height="80" width="80" />
-                </div>
-                <div class="col-span-2">
-                    <p class="text-gray-600"> Google Calendar API</p>
-                    <p class="text-gray-400 text-sm">Manage calendars and events in Google Calendar.</p>
-                    <?php
-                    if (!empty($data)) {
-                        echo '<div class="flex justify-between items-center mt-4">
+  <div class="grid grid-cols-4 gap-6 mb-6">
+    <div class="bg-white rounded-lg shadow p-4">
+      <h3 class="text-lg font-semibold text-start mb-4">Google Calendar</h3>
+      <div class="grid grid-flow-col grid-cols-3">
+        <div>
+          <img
+            src="https://lh3.googleusercontent.com/PVe1qU58ryjSA4nEllsvJIA1g9qJSu1h8vfHvgOsBhfsNV-gFkCiBl8B6Aqpux9iYoqRdoTLxwvVBVDE1SE=w80-h80"
+            height="80" width="80" />
+        </div>
+        <div class="col-span-2">
+          <p class="text-gray-600"> Google Calendar API</p>
+          <p class="text-gray-400 text-sm">Manage calendars and events in Google Calendar.</p>
+          <?php
+          if (!empty($data)) {
+            echo '<div class="flex justify-between items-center mt-4">
                         <span class="text-[12px] text-green-600">connected</span>
                         <a href="?page=integration&disconnect=true" class="bg-red-500 text-white py-1 px-3 rounded">Disconnect
                         </a>
                     </div>';
-                    } else {
-                        echo '<div class="flex justify-end items-center mt-4">
+          } else {
+            echo '<div class="flex justify-end items-center mt-4">
                             <a href="?page=integration&show=true" class="bg-blue-500 text-white py-1 px-3 rounded">Connect
                             </a>
                         </div>';
-                    }
-                    ?>
-                </div>
-            </div>
+          }
+          ?>
         </div>
+      </div>
     </div>
+  </div>
 </div>

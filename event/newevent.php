@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+session_start();
 use event\details\Event;
 use event\EventGateway;
 
@@ -9,6 +10,8 @@ require_once './contract/EventContract.php';
 require_once './details/Event.php';
 require_once 'EventGateway.php';
 require_once '../vendor/autoload.php';
+
+$client = new Google\Client();
 
 if (isset($_POST["jsonData"]) && $_POST["jsonData"] != "") {
     //integration connect request
@@ -22,15 +25,28 @@ if (isset($_POST["jsonData"]) && $_POST["jsonData"] != "") {
     $sql = "INSERT INTO `integrations`($columns) VALUES ('$values')";
     if ($conn->query($sql) === TRUE) {
         $lastRecordedId = $conn->insert_id;
-        //start work on google oauth
-        $client = new Google_Client();
+        //start google oauth
+        $client->setApplicationName("Evento - An Event Managment System");
+        $client->addScope(["profile", "email"]);
         $client->setAuthConfig($jsonData);
-        $client->setRedirectUri('http://localhost/intuji-assignment/index.php');
-        $client->addScope(Google_Service_Calendar::CALENDAR_READONLY);
+        $client->setAccessType("offline");
+        $client->setPrompt("select_account consent");
+        $client->setRedirectUri("http://localhost/intuji-assignment/event/newevent.php");
+        $client->setIncludeGrantedScopes(true);
         $auth_url = $client->createAuthUrl();
         header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
     }
 }
+
+// Handle callback request from google oauth
+if (isset($_GET['code']) && $_GET['code'] != "") {
+    $accessToken = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    $_SESSION['access_token'] = $accessToken;
+    $_SESSION['code'] = $_GET['code'];
+    header('Location: http://localhost/intuji-assignment/index.php');
+    exit;
+}
+
 if (isset($_POST["name"]) && !isset($_POST["jsonData"])) {
     include_once ("validation/event.php");
 

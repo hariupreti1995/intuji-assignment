@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
+// session_unset();
 ?>
 <!doctype html>
 <html>
@@ -23,17 +24,15 @@ session_start();
         $page = isset($_GET["page"]) ? $_GET["page"] : "home";
         $showModal = isset($_GET["show"]) ? $_GET["show"] : false;
         $pagesPath = __DIR__ . "/pages/";
-        print_r($_SESSION);
-        // Handle callback request from google oauth
-        if (isset($_GET['code']) && $_GET['code'] != "") {
-            $client = new Google_Client();
-            $accessToken = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-            $_SESSION['access_token'] = $accessToken;
-            header('Location: http://localhost/intuji-assignment/index.php');
-            exit;
-        }
-
         include_once './pages/components/sidebar.php';
+        //Fetch recorded information
+        $today = date('Y-m-d');
+        $upcommingEventsQuery = "SELECT * FROM events WHERE date >= $today";
+        $upcommingEvents = $conn->query($upcommingEventsQuery);
+        $upcommingEventsData = [];
+        while ($row = $upcommingEvents->fetch_assoc()) {
+            $upcommingEventsData[] = $row;
+        }
         ?>
         <div class="flex-1 flex flex-col">
             <?php include_once './pages/components/header.php' ?>
