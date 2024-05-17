@@ -7,6 +7,9 @@ switch ($page) {
     case 'home':
         $title = "All Events";
         break;
+    case 'integration':
+        $title = "Available Integration";
+        break;
     default:
         $title = "All Events";
         break;

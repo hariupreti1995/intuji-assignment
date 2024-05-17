@@ -51,8 +51,7 @@ $formData = isset($_GET["data"]) ? unserialize($_GET["data"]) : [];
                         <div><label class="<?php echo $labelStyle; ?>">Short Description <span
                                     class="font-semibold text-red-500">*</span></label></div>
                         <textarea name="description" placeholder="Short description"
-                            value="<?php echo !empty($formData) && key_exists("description", $formData) ? $formData["description"] : "" ?>"
-                            class="<?php echo $inputTextStyle; ?>"></textarea>
+                            class="<?php echo $inputTextStyle; ?>"><?php echo !empty($formData) && key_exists("description", $formData) ? $formData["description"] : "" ?></textarea>
                         <?php if (!empty($errors) && key_exists("description", $errors)) { ?>
                             <span class="flex text-red-500 my-1 rounded-md text-sm animate-[shake_1s]">
                                 <?php echo $errors["description"]; ?></span>
@@ -70,24 +69,36 @@ $formData = isset($_GET["data"]) ? unserialize($_GET["data"]) : [];
                         <?php } ?>
                     </div>
                     <div class="mx-4 my-8">
-                        <div><label class="<?php echo $labelStyle; ?>">From Date <span
+                        <div><label class="<?php echo $labelStyle; ?>">Event Date <span
                                     class="font-semibold text-red-500">*</span></label></div>
-                        <input type="datetime-local" name="from_date" class="<?php echo $inputTextStyle; ?>"
-                        value="<?php echo !empty($formData) && key_exists("from_date", $formData) ? $formData["from_date"] : date("Y-m-d H:i:s") ?>" >
-                        <?php if (!empty($errors) && key_exists("from_date", $errors)) { ?>
+                        <input type="date" name="date" class="<?php echo $inputTextStyle; ?>"
+                            value="<?php echo !empty($formData) && key_exists("date", $formData) ? $formData["date"] : date("Y-m-d") ?>">
+                        <?php if (!empty($errors) && key_exists("date", $errors)) { ?>
                             <span class="flex text-red-500 my-1 rounded-md text-sm animate-[shake_1s]">
-                                <?php echo $errors["from_date"]; ?></span>
+                                <?php echo $errors["date"]; ?></span>
                         <?php } ?>
                     </div>
-                    <div class="mx-4 my-8">
-                        <div><label class="<?php echo $labelStyle; ?>">To Date <span
-                                    class="font-semibold text-red-500">*</span></label></div>
-                        <input type="datetime-local" name="to_date" class="<?php echo $inputTextStyle; ?>"
-                        value="<?php echo !empty($formData) && key_exists("to_date", $formData) ? $formData["to_date"] : date("Y-m-d H:i:s") ?>">
-                        <?php if (!empty($errors) && key_exists("to_date", $errors)) { ?>
-                            <span class="flex text-red-500 my-1 rounded-md text-sm animate-[shake_1s]">
-                                <?php echo $errors["to_date"]; ?></span>
-                        <?php } ?>
+                    <div class="mx-4 my-8 grid grid-flow-cols grid-cols-2 gap-6">
+                        <div>
+                            <div><label class="<?php echo $labelStyle; ?>">Start Time <span
+                                        class="font-semibold text-red-500">*</span></label></div>
+                            <input type="time" name="time_from" class="<?php echo $inputTextStyle; ?>"
+                                value="<?php echo !empty($formData) && key_exists("time_from", $formData) ? $formData["time_from"] : date("Y-m-d H:i:s") ?>">
+                            <?php if (!empty($errors) && key_exists("time_from", $errors)) { ?>
+                                <span class="flex text-red-500 my-1 rounded-md text-sm animate-[shake_1s]">
+                                    <?php echo $errors["time_from"]; ?></span>
+                            <?php } ?>
+                        </div>
+                        <div>
+                            <div><label class="<?php echo $labelStyle; ?>">End Time <span
+                                        class="font-semibold text-red-500">*</span></label></div>
+                            <input type="time" name="time_to" class="<?php echo $inputTextStyle; ?>"
+                                value="<?php echo !empty($formData) && key_exists("time_to", $formData) ? $formData["time_to"] : date("Y-m-d H:i:s") ?>">
+                            <?php if (!empty($errors) && key_exists("time_to", $errors)) { ?>
+                                <span class="flex text-red-500 my-1 rounded-md text-sm animate-[shake_1s]">
+                                    <?php echo $errors["time_to"]; ?></span>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
                 <div class="flex justify-end mt-4">

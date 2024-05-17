@@ -1,5 +1,5 @@
 <?php 
-namespace event\contracts;
+namespace event\contract;
 
 interface EventContract
 {
