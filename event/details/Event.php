@@ -1,11 +1,11 @@
 <?php
 namespace event\details;
-
 use event\contract\EventContract;
-
+use dbconnection;
 class Event
 {
     protected $eventContract;
+    
 
     public function __construct(EventContract $eventContract)
     {
@@ -26,4 +26,5 @@ class Event
             //Event set on calendar
         }
     }
+
 }
