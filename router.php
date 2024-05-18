@@ -1,5 +1,6 @@
 <?php
 // availble routes
+$pagesPath = __DIR__ . "/pages/";
 $routes = [
     'home' => 'landing.php',
     'create' => 'createEvent.php',

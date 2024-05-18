@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors["date"] = "Event date is required";
     } elseif (!strtotime($eventDate)) {
         $errors["date"] = "Invalid date format supplied";
+    } elseif (strtotime($eventDate) < strtotime(date("Y-m-d"))) {
+        $errors["date"] = "Event date must not be in the past";
     }
 
     $time_from = trim($_POST["time_from"]);
@@ -34,6 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!strtotime($time_to)) {
         $errors["time_to"] = "Invalid time format supplied";
     }
+
+    if(strtotime($time_from) > strtotime($time_to) || strtotime($time_from) == strtotime($time_to)) {
+        $errors["time_to"] = "End time should be later than start time";
+        $errors["time_from"] = "Start time should be sooner than end time";
+    } 
 
     $formData = ["name" => $name, "description" => $description, "location" => $location, "date" => $eventDate, "time_from" => $time_from, "time_to" => $time_to];
 }
