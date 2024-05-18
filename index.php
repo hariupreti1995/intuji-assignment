@@ -30,6 +30,17 @@ session_start();
         include_once './pages/components/sidebar.php';
         //Delete event
         if ($performDelete > 0) {
+            //Remove event from calendar
+            $eventSql = "SELECT * FROM events WHERE id = $performDelete";
+            $details = $conn->query($eventSql)->fetch_assoc();
+            $gcEventId = $details["google_calendar_event_id"];
+            $accessToken = $_SESSION['access_token'];
+            if (!empty($gcEventId)) {
+                $client = new \Google_Client();
+                $client->setAccessToken($accessToken);
+                $service = new \Google\Service\Calendar($client);
+                $service->events->delete('primary', $gcEventId);
+            }
             $deleteEventQuery = "DELETE FROM events WHERE id = $performDelete";
             $response = $conn->query($deleteEventQuery);
             header("Location: index.php?page=home&success=" . urlencode("Event successfully deleted"));

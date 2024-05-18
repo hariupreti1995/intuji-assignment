@@ -49,7 +49,7 @@
             <div class="flex flex-row justify-between  mt-4">
                 <span class="text-gray-400 text-sm">' . $event['date'] . '</span>
                 <div>
-                <a target="_blank" href="' . $event["google_calendar_event_id"] . '" class="bg-blue-500 text-white py-1 px-3 rounded">View</a>
+                <a target="_blank" href="' . $event["html_link"] . '" class="bg-blue-500 text-white py-1 px-3 rounded">View</a>
                 <a href="index.php?page=home&delete=' . $event["id"] . '" class="bg-red-500 text-white py-1 px-3 rounded">Delete</a>
                 </div>
             </div>
@@ -60,18 +60,10 @@
   <?php } ?>
   <div class="text-sm px-2 py-4 text-gray-500">Calendar View</div>
   <div class="bg-white rounded-lg shadow p-6">
-    <div class="grid grid-cols-2">
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Monthly</h3>
-      </div>
-      <div class="grid place-content-end -mt-4 p-4">
-        <select class="bg-slate-50 p-2">
-          <option>All Events</option>
-          <option>Upcomming Events</option>
-          <option>Past Events</option>
-        </select>
-      </div>
+    <div class="bg-gray-100 rounded">
+      <iframe class="w-full min-h-[600px]"
+        src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&bgcolor=%23ffffff&showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&src=aGFyaXVwcmV0aTE5OTVAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Mzk5NjZlNjI4ZGMzODM1MTc2OTE4ZTIyZjY5OGI3ODJjZTJiZDgyOGNkNThjMmIxYTk1ZDk1N2U3N2JiZWRiZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4ubnAjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%2333B679&color=%23A79B8E&color=%230B8043&hl=en"
+        frameborder="0" scrolling="no"></iframe>
     </div>
-    <div class="h-64 bg-gray-100 rounded"></div>
   </div>
 </div>

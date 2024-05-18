@@ -92,7 +92,8 @@ class Event
         $calendarId = 'primary';
         try {
             $event = $service->events->insert($calendarId, $event);
-            $updateSql = "UPDATE events SET google_calendar_event_id = '$event->htmlLink' WHERE id = '$id'";
+            $eventId = $event->getId();
+            $updateSql = "UPDATE events SET html_link = '$event->htmlLink', `google_calendar_event_id` = '$eventId' WHERE id = '$id'";
             if ($conn->query($updateSql) === TRUE) {
                 $conn->close();
                 return true;
