@@ -5,10 +5,7 @@
     "scripts": {
         "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
     },
-    "extra": {
-        "google/apiclient-services": [
-            "Drive",
-            "YouTube"
-        ]
+    "config": {
+        "process-timeout": 600
     }
 }

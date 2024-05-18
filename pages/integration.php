@@ -23,7 +23,7 @@ $modalContent = '<div class="relative z-10" aria-labelledby="modal-title" role="
       </div>
     </div>
     <div class="bg-gray-50 px-4 py-3 sm:flex justify-between sm:px-6">
-      <a href="?page=integration" class="inline-flex w-full justify-center rounded-md bg-slate-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-600 sm:ml-3 sm:w-auto">Close</a>
+      <a href="index.php?page=integration" class="inline-flex w-full justify-center rounded-md bg-slate-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-600 sm:ml-3 sm:w-auto">Close</a>
       <button type="submit" class="inline-flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto">Connect Now</button>
     </div>
   </div>

@@ -14,10 +14,10 @@ $inactiveClass = "block py-2.5 px-4 rounded transition duration-200 hover:bg-ind
     </div>
     <nav class="mt-10 ">
         <span class="w-full text-[10px] pl-2">Create</span>
-        <a href="?page=create" class="<?php echo strcmp($page, 'create') == 0 ? $activeClass : $inactiveClass ?>">New
+        <a href="index.php?page=create" class="<?php echo strcmp($page, 'create') == 0 ? $activeClass : $inactiveClass ?>">New
             Event</a>
         <span class="w-full text-[10px] pl-2">Management</span>
-        <a href="?page=home" class="<?php echo strcmp($page, 'home') == 0 ? $activeClass : $inactiveClass ?>">All Event </a>
-        <a href="?page=integration" class="<?php echo strcmp($page, 'integration') == 0 ? $activeClass : $inactiveClass ?>">Integration </a>
+        <a href="index.php?page=home" class="<?php echo strcmp($page, 'home') == 0 ? $activeClass : $inactiveClass ?>">All Event </a>
+        <a href="index.php?page=integration" class="<?php echo strcmp($page, 'integration') == 0 ? $activeClass : $inactiveClass ?>">Integration </a>
     </nav>
 </div>
