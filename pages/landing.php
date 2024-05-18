@@ -49,7 +49,7 @@
             <div class="flex flex-row justify-between  mt-4">
                 <span class="text-gray-400 text-sm">' . $event['date'] . '</span>
                 <div>
-                <a href="index.php?page=home&view=' . $event["id"] . '" class="bg-blue-500 text-white py-1 px-3 rounded">View</a>
+                <a target="_blank" href="' . $event["google_calendar_event_id"] . '" class="bg-blue-500 text-white py-1 px-3 rounded">View</a>
                 <a href="index.php?page=home&delete=' . $event["id"] . '" class="bg-red-500 text-white py-1 px-3 rounded">Delete</a>
                 </div>
             </div>

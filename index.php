@@ -38,7 +38,7 @@ session_start();
 
         //Fetch recorded information
         $today = date('Y-m-d');
-        $upcommingEventsQuery = "SELECT * FROM events WHERE date >= $today";
+        $upcommingEventsQuery = "SELECT * FROM events WHERE date >= $today ORDER BY id DESC LIMIT 4";
         $upcommingEvents = $conn->query($upcommingEventsQuery);
         $upcommingEventsData = [];
         while ($row = $upcommingEvents->fetch_assoc()) {
@@ -48,10 +48,9 @@ session_start();
         <div class="flex-1 flex flex-col">
             <?php include_once './pages/components/header.php' ?>
             <!-- Dynamic Main Content -->
-            <?php echo $successMessage != "" ? '<span class=" p-4 mx-4 my-2 bg-green-400">'.$successMessage.'</span>':"" ?>
-            <?php echo $errroMessage != "" ? '<span class=" p-4 mx-4 my-2 bg-red-400">'.$errroMessage.'</span>':"" ?>
+            <?php echo $successMessage != "" ? '<span class=" p-4 mx-4 my-2 bg-green-400">' . $successMessage . '</span>' : "" ?>
+            <?php echo $errroMessage != "" ? '<span class=" p-4 mx-4 my-2 bg-red-400">' . $errroMessage . '</span>' : "" ?>
             <?php require_once './router.php' ?>
-            <?php print_r($_SESSION); ?>
         </div>
     </div>
 </body>

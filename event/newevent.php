@@ -22,6 +22,7 @@ $client->setAccessType("offline");
 $client->setPrompt("select_account consent");
 
 if (!isset($_GET['code']) && isset($_POST["jsonData"]) && $_POST["jsonData"] != "") {
+    session_unset();
     $jsonData = json_decode($_POST["jsonData"], true);
     $client->setAuthConfig($jsonData);
     $auth_url = $client->createAuthUrl();
@@ -32,7 +33,7 @@ if (!isset($_GET['code']) && isset($_POST["jsonData"]) && $_POST["jsonData"] != 
     $accessToken = $token['access_token'];
     //Record it for future use
     $conn->query("INSERT INTO integrations(data,status,service,token) VALUES('Connection established successfully','connected','google-calendar-api','$accessToken')");
-    header("Location: ../index.php?page=integration&success=" . urlencode("Connection successfully established with Google Calender"));
+    header("Location: ../index.php?page=integration&success=" . urlencode("Connection successfully established with Google Calendar"));
 } elseif (isset($_POST["name"]) && !isset($_POST["jsonData"]) && isset($_SESSION['access_token']) && $_SESSION['access_token'] != "") {
     include_once ("validation/event.php");
     if (!empty($errors)) {
@@ -44,9 +45,10 @@ if (!isset($_GET['code']) && isset($_POST["jsonData"]) && $_POST["jsonData"] != 
         try {
             $contract = new Event(new EventGateway($formData, "create"));
             $response = $contract->createNewEvent();
-            print_r($response);
-            header("Location: ../index.php?page=home&success=" . urldecode("New event successfully created"));
-            exit();
+            if ($response) {
+                header("Location: ../index.php?page=home&success=" . urldecode("New event successfully created"));
+                exit();
+            }
         } catch (\Throwable $th) {
             throw $th;
         }
