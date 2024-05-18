@@ -8,7 +8,7 @@ $inactiveClass = "block py-2.5 px-4 rounded transition duration-200 hover:bg-ind
         <div>
             <h2
                 class="text-lg uppercase font-semibold bg-clip-text text-transparent bg-gradient-to-b from-white to-red-500">
-                Eventer</h2>
+                Evento</h2>
             <span class="text-[12px] -mt-4 mb-8">Event Management System</span>
         </div>
     </div>
