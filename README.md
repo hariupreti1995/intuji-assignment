@@ -3,6 +3,9 @@
 ## Assessment description
 An event management system that allows visitors to create and change event information, resulting in an event on Google Calendar.
 
+## Demo
+[<img src="https://github.com/hariupreti1995/intuji-assignment/blob/main/thumbnail.png" width="50%">](https://github.com/hariupreti1995/intuji-assignment/blob/main/demo.webm "Evento - Event Management System")
+
 ## Git flow
 The main branch will be updated to test the assessment.
 
