@@ -2,9 +2,15 @@
 include 'connection/mysqlconnection.php';
 
 if ($conn->ping()) {
-    $dropdb = "DROP DATABASE $dbName";
+    // Query to check if the database exists
+    $sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$dbName'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $dropdb = "DROP DATABASE $dbName";
+        $conn->query($dropdb);
+    }
     $sql = "CREATE DATABASE $dbName";
-    if ($conn->query($dropdb) === TRUE && $conn->query($sql) === TRUE) {
+    if ($conn->query($sql) === TRUE) {
         echo "Database created successfully\n";
         //Create require table once database is created
         $eventsTableQuery = "
@@ -38,8 +44,6 @@ if ($conn->ping()) {
                 echo "Integration table created successfully\n\n";
             }
         }
-    } else {
-        echo "Error creating database: " . $conn->error;
     }
 } else {
     echo "Error: " . $conn->error;

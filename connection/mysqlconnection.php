@@ -15,7 +15,11 @@ $password = $env["DB_PASSWORD"];
 $dbName = $env["DB_NAME"];
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbName);
+try {
+  $conn = new mysqli($servername, $username, $password, $dbName);
+} catch (\Throwable $th) {
+  $conn = new mysqli($servername, $username, $password);
+}
 
 // Check connection
 if ($conn->connect_error) {
